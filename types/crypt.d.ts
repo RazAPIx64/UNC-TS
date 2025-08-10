@@ -3,7 +3,8 @@
 // This is really messy. Function names from the documentation will be treated
 // as best practice.
 
-type HashAlgorithm = "sha1" | "sha384" | "sha512" | "md5" | "sha256" | "sha3-224" | "sha3-256" | "sha3-512";
+type HashAlgorithm = "sha1" | "sha384" | "sha512" | "md5" | "sha256" | "sha3-224" | "sha3-256" | "sha3-512"; // crypt.hash
+type CipherMode = 'CBC' | 'ECB' | 'CTR' | 'CFB' | 'OFB' | 'GCM'; // crypt.encrypt or crypt.decrypt
 
 /**
  * Handles data encryption and decryption.
@@ -58,7 +59,7 @@ declare namespace crypt {
 	 * @param iv The IV to use.
 	 * @returns The decrypted data.
 	 */
-	function decrypt(data: string, key: string, iv?: string): string;
+	function decrypt(data: string, key: string, iv?: string, mode?: CipherMode): string;
 
 	/**
 	 * Encrypts the given data using AES (ctr mode) with the key and IV.
@@ -67,7 +68,7 @@ declare namespace crypt {
 	 * @param iv The IV to use.
 	 * @returns The encrypted data.
 	 */
-	function encrypt(data: string, key: string, iv?: string): string;
+	function encrypt(data: string, key: string, iv?: string, mode?: CipherMode): string;
 
 	/**
 	 * Returns a randomly generated string of length `length`. The result is
